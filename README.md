@@ -4,8 +4,10 @@ Simulación y realización de un deposito a plazo fijo, además de la consulta d
 
 
 ## Herramientas
--NetBeans IDE 8.2 All
++-NetBeans IDE 8.2 All
 https://netbeans.org/downloads/
+
++http://www.primefaces.org/downloads
 
 
 
