@@ -5,7 +5,7 @@ Simulación y realización de un deposito a plazo fijo, además de la consulta d
 
 ## Herramientas
 
-* [NetBeans IDE 8.2 All](https://netbeans.org/downloads/) 
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [NetBeans IDE 8.2 All](https://netbeans.org/downloads/) -IDE utilizado.
+* [PrimeFaces Ultimate UI](http://www.primefaces.org/downloads) - Framework para Java EE.
+* [GlassFish Server Open Source Edition 4.1.1](https://glassfish.java.net/download.html) - Servidor de aplicaciones.
 
