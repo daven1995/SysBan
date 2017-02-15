@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templades/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
+
+                    <h:panelGrid columns="2">
+
+                        <p:outputLabel for="txtMonto" value="Monto:" />
+                        <p:inputText id="txtMonto" value="#{simulador.monto}" required="true"/>
+
+                        <p:outputLabel for="txtPlazo" value="Plazo:" />
+                        <p:selectOneMenu id="txtPlazo" value="#{simulador.plazo}" required="true">
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                            <f:selectItem itemLabel="3 Meses" itemValue="3" />
+                            <f:selectItem itemLabel="6 Meses" itemValue="6" />
+                            <f:selectItem itemLabel="9 Meses" itemValue="9" />
+                            <f:selectItem itemLabel="12 Meses" itemValue="12" />
+                        </p:selectOneMenu>
+
+                        <h:column />
+                        <p:commandButton value="Calcular" actionListener="#{simulador.calculoPlazoFijo()}" update="panelinfo" onclick="PF('panel2').show();"/>
+
+                    </h:panelGrid>
+
+
+                    <p:panel widgetVar="panel2" visible="false" closable="true" toggleable="true" >
+                        <p:fieldset legend="Simulacion" style="margin-bottom:20px" id="panelinfo">
+                            <p:panelGrid columns="2" >
+                                <p:outputLabel for="mon" value="Monto:" />
+                                <h:outputText id="mon" value="#{simulador.monto}" />
+
+                                <p:outputLabel for="plazo" value="Plazo:" />
+                                <h:outputText id="plazo" value="#{simulador.plazo} meses" />
+
+                                <p:outputLabel for="interes" value="Interes Anual:" />
+                                <h:outputText id="interes" value="#{simulador.buscarInt()} %" />
+
+                                <p:outputLabel for="monTotal" value="Total a pagar:" />
+                                <h:outputText id="monTotal" value="#{simulador.montoTotal}" />
+
+                            </p:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="Deposito a Plazo Fijo" style="margin-bottom:20px">
+                            <h:panelGrid columns="3" cellpadding="5">
+
+                                <p:outputLabel for="tipoDep" value="Tipo de Deposito:" />
+                                <p:selectOneRadio id="tipoDep" value="#{simulador.tipoDeposito}">
+                                    <f:selectItem itemLabel="Transferencia Bacaria" itemValue="I" />
+                                    <f:selectItem itemLabel="Descuento de Cuenta Bancaria" itemValue="A" />
+                                </p:selectOneRadio>
+
+                                <p:spacer/>
+                                <p:commandButton value="Realizar Deposito a Plazo Fijo" />
+
+                                
+                            </h:panelGrid>
+                        </p:fieldset>
+
+
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
