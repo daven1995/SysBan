@@ -30,6 +30,5 @@ public interface TasaFacadeLocal {
 
     int count();
     
-    public Tasa buscarInteres(int plazo, float monto) throws Exception;
-    
+    Tasa buscarInteres(int plazo, float monto) throws Exception;
 }

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../templades/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:outputText value="*Recuerde la tasa de interés presentada es anual" />
+                <h:body>
+                    <p:dataTable value="#{tasaBean.tasas}" var="t">
+                        <p:column headerText="Num">
+                            <h:outputText value="#{t.idTasa}" />
+                        </p:column>
+
+                        <p:column headerText="Monto Mínimo">
+                            <h:outputText value="$ #{t.montoMinimo}" />
+                        </p:column>
+                        
+                        <p:column headerText="Monto Máximo">
+                            <h:outputText value="$ #{t.montoMaximo}" />
+                        </p:column>
+
+                        <p:column headerText="Tiempo (meses)">
+                            <h:outputText value="#{t.tiempo} meses" />
+                        </p:column>
+
+                        <p:column headerText="Interes Anual">
+                            <h:outputText value="#{t.interes} %" />
+                        </p:column>
+                    </p:dataTable>
+                </h:body>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

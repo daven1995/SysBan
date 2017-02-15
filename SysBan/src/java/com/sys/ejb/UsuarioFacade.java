@@ -19,7 +19,7 @@ import javax.persistence.Query;
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
 
-    @PersistenceContext(unitName = "SysBanPU")
+    @PersistenceContext(unitName = "SysBan3PU")
     private EntityManager em;
 
     @Override
@@ -51,4 +51,5 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }       
         return usuario;
     }
+    
 }

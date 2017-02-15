@@ -4,23 +4,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
-        <ui:composition template="./../../WEB-INF/templades/plantilla.xhtml">
+        <ui:composition template="./../../templades/plantilla.xhtml">
 
             <ui:define name="content">
-                <h:form>
-                    <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
+                <h:form enctype="multipart/form-data" >
+                    <p:growl autoUpdate="true" showDetail="true" showSummary="false"/>
 
                     <h:panelGrid columns="2">
 
                         <p:outputLabel for="txtMonto" value="Monto:" />
-                        <p:inputText id="txtMonto" value="#{simulador.monto}" required="true"/>
+                        <p:inputText id="txtMonto" value="#{simuladoBean.monto}" required="true"/>
 
                         <p:outputLabel for="txtPlazo" value="Plazo:" />
-                        <p:selectOneMenu id="txtPlazo" value="#{simulador.plazo}" required="true">
+                        <p:selectOneMenu id="txtPlazo" value="#{simuladoBean.plazo}" required="true">
                             <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                             <f:selectItem itemLabel="3 Meses" itemValue="3" />
                             <f:selectItem itemLabel="6 Meses" itemValue="6" />
@@ -29,47 +29,73 @@
                         </p:selectOneMenu>
 
                         <h:column />
-                        <p:commandButton value="Calcular" actionListener="#{simulador.calculoPlazoFijo()}" update="panelinfo" onclick="PF('panel2').show();"/>
-
+                        <p:commandButton value="Calcular" actionListener="#{simuladoBean.calculoPlazoFijo()}" update="panelinfo" onclick="PF('panel2').show();"/>
+                        
                     </h:panelGrid>
-
 
                     <p:panel widgetVar="panel2" visible="false" closable="true" toggleable="true" >
                         <p:fieldset legend="Simulacion" style="margin-bottom:20px" id="panelinfo">
                             <p:panelGrid columns="2" >
                                 <p:outputLabel for="mon" value="Monto:" />
-                                <h:outputText id="mon" value="#{simulador.monto}" />
+                                <h:outputText id="mon" value="#{simuladoBean.monto}" />
 
                                 <p:outputLabel for="plazo" value="Plazo:" />
-                                <h:outputText id="plazo" value="#{simulador.plazo} meses" />
+                                <h:outputText id="plazo" value="#{simuladoBean.plazo} meses" />
 
                                 <p:outputLabel for="interes" value="Interes Anual:" />
-                                <h:outputText id="interes" value="#{simulador.buscarInt()} %" />
+                                <h:outputText id="interes" value="#{simuladoBean.buscarInt()} %" />
 
                                 <p:outputLabel for="monTotal" value="Total a pagar:" />
-                                <h:outputText id="monTotal" value="#{simulador.montoTotal}" />
+                                <h:outputText id="monTotal" value="#{simuladoBean.montoTotal}" />
 
                             </p:panelGrid>
+                            <p:separator/>
+                            <p:commandButton value="Realizar Deposito a Plazo Fijo" onclick="PF('panel4').show();" />
                         </p:fieldset>
-
-                        <p:fieldset legend="Deposito a Plazo Fijo" style="margin-bottom:20px">
-                            <h:panelGrid columns="3" cellpadding="5">
-
-                                <p:outputLabel for="tipoDep" value="Tipo de Deposito:" />
-                                <p:selectOneRadio id="tipoDep" value="#{simulador.tipoDeposito}">
-                                    <f:selectItem itemLabel="Transferencia Bacaria" itemValue="I" />
-                                    <f:selectItem itemLabel="Descuento de Cuenta Bancaria" itemValue="A" />
-                                </p:selectOneRadio>
-
-                                <p:spacer/>
-                                <p:commandButton value="Realizar Deposito a Plazo Fijo" />
-
-                                
-                            </h:panelGrid>
-                        </p:fieldset>
-
-
                     </p:panel>
+                </h:form>
+
+
+
+                <h:form enctype="multipart/form-data">
+                    <p:panel widgetVar="panel4" visible="false" closable="true" toggleable="true">
+                        <h3 style="margin-top:0">Tipo de Deposito a Plazo Fijo</h3>
+                        <p:tabView>
+                            <p:tab title="Transferncia Bancaria">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:fieldset legend="Deposito a Plazo Fijo" style="margin-bottom:20px">
+                                        <p:fileUpload value="#{simuladoBean.file}" mode="simple" allowTypes="/(\.|\/)(pdf|jpe?g|png)$/"/>
+                                        <p:commandButton ajax="false" value="Subir y Aceptar" actionListener="#{simuladoBean.crearDepositoInactivo()}" />
+
+                                    </p:fieldset>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Descuento de la Cuenta" >
+                                <p:commandButton ajax="false" value="Aceptar" actionListener="#{simuladoBean.crearDepositoAc()}" onclick="PF('dlg2').show();"/>
+
+
+
+
+                            </p:tab>
+
+                        </p:tabView>
+                        <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="200">
+                            <h:outputText value=" Información Descuento Realizado:" />
+                            <h:panelGrid columns="2" cellpadding="10">
+
+                                <p:outputLabel for="num" value="Número Cuenta:" />
+                                <h:outputText id="num" value="#{simuladoBean.numeroCuenta}" />
+
+                                <p:outputLabel for="salac" value="Saldo Actual:" />
+                                <h:outputText id="salac" value="#{simuladoBean.saldoActual}" />
+
+                                <p:outputLabel for="saldes" value="Saldo Luego del Depósito:" />
+                                <h:outputText id="saldes" value="#{simuladoBean.saldoDes}" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </p:panel>
+
+
                 </h:form>
             </ui:define>
 

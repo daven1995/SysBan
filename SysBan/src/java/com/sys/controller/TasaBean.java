@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.sys.controller;
 
 import com.sys.ejb.TasaFacadeLocal;
 import com.sys.model.Tasa;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -16,7 +11,7 @@ import javax.enterprise.context.RequestScoped;
 
 @Named(value = "tasaBean")
 @RequestScoped
-public class TasaBean implements Serializable{
+public class TasaBean {
 
     @EJB
     private TasaFacadeLocal tasaFacade;
@@ -33,8 +28,6 @@ public class TasaBean implements Serializable{
     public List<Tasa> getTasas(){
         return tasaFacade.findAll();
      }
-    
-    
      
     public String crear(){
          Tasa t= new Tasa();
@@ -86,6 +79,5 @@ public class TasaBean implements Serializable{
     public void setInteres(float interes) {
         this.interes = interes;
     }
-     
-     
+    
 }

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../templades/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:messages autoUpdate="true" showSummary="false" showDetail="true"/>
+
+                    <p:dataTable value="#{verDeposBean.depositoplazofijos}" var="deposito" paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" currentPageReportTemplate="Página: ({currentPage} de {totalPages})">
+
+                        <p:column headerText="Cedula" >
+                            <h:outputText value="#{deposito.idUsuario.cedula}" />
+                        </p:column>
+
+                        <p:column headerText="Cliente" >
+                            <h:outputText value="#{deposito.idUsuario.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Correo Eletronico" >
+                            <h:outputText value="#{deposito.idUsuario.correo}" />
+                        </p:column>
+
+                        <p:column headerText="Fecha de Deposito">
+                            <h:outputText value="#{deposito.fecha}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column headerText="Estado">
+                            <h:outputText value="#{verDeposBean.verEstado(deposito.estado)}" id="estado1" />
+                        </p:column>
+
+                        <p:column headerText="Imagen" >
+                            <p:commandButton value="Ver" actionListener="#{verDeposBean.verImagen(deposito.imagen)}" ajax="false"/>     
+                        </p:column>
+
+                        <p:column headerText="Activación de Depósito" >
+                            <p:commandButton value="Activar" update="estado1" actionListener="#{verDeposBean.activarEstado(deposito.idDeposito)}"/>
+                            <p:commandButton value="Inactivar" update="estado1" actionListener="#{verDeposBean.inactivarEstado(deposito.idDeposito)}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -19,7 +19,7 @@ import javax.persistence.Query;
 @Stateless
 public class TasaFacade extends AbstractFacade<Tasa> implements TasaFacadeLocal {
 
-    @PersistenceContext(unitName = "SysBanPU")
+    @PersistenceContext(unitName = "SysBan3PU")
     private EntityManager em;
 
     @Override

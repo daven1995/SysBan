@@ -6,17 +6,27 @@
 package com.sys.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,7 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Depositoplazofijo.findByEstado", query = "SELECT d FROM Depositoplazofijo d WHERE d.estado = :estado")
     , @NamedQuery(name = "Depositoplazofijo.findByDeposito", query = "SELECT d FROM Depositoplazofijo d WHERE d.deposito = :deposito")
     , @NamedQuery(name = "Depositoplazofijo.findByTiempo", query = "SELECT d FROM Depositoplazofijo d WHERE d.tiempo = :tiempo")
-    , @NamedQuery(name = "Depositoplazofijo.findByImagen", query = "SELECT d FROM Depositoplazofijo d WHERE d.imagen = :imagen")})
+    , @NamedQuery(name = "Depositoplazofijo.findByFecha", query = "SELECT d FROM Depositoplazofijo d WHERE d.fecha = :fecha")})
 public class Depositoplazofijo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,9 +64,17 @@ public class Depositoplazofijo implements Serializable {
     private Float deposito;
     @Column(name = "tiempo")
     private Integer tiempo;
-    @Size(max = 100)
+    @Lob
     @Column(name = "imagen")
-    private String imagen;
+    private byte[] imagen;
+    @Column(name = "fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDeposito")
+    private List<Transacciondpf> transacciondpfList;
 
     public Depositoplazofijo() {
     }
@@ -113,12 +131,37 @@ public class Depositoplazofijo implements Serializable {
         this.tiempo = tiempo;
     }
 
-    public String getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @XmlTransient
+    public List<Transacciondpf> getTransacciondpfList() {
+        return transacciondpfList;
+    }
+
+    public void setTransacciondpfList(List<Transacciondpf> transacciondpfList) {
+        this.transacciondpfList = transacciondpfList;
     }
 
     @Override

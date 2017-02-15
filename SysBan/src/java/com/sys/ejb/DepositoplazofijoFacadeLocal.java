@@ -30,4 +30,6 @@ public interface DepositoplazofijoFacadeLocal {
 
     int count();
     
+    List<Depositoplazofijo> buscarImagen() throws Exception;
+    
 }

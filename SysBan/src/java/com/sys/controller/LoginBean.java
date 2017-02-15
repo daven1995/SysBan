@@ -1,9 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.sys.controller;
 
 import com.sys.ejb.UsuarioFacadeLocal;
 import com.sys.model.Usuario;
-import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -11,10 +14,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-
+/**
+ *
+ * @author DANIEL
+ */
 @Named(value = "loginBean")
 @RequestScoped
-public class LoginBean implements Serializable{
+public class LoginBean {
 
     @EJB
     private UsuarioFacadeLocal usuarioFacade;

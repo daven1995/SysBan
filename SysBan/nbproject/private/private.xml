@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>web/pages/cliente/simulador.xhtml</url>
+            <bookmark id="1">
+                <name/>
+                <line>105</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/ejb/AbstractFacade.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/ejb/UsuarioFacade.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/controller/VerDeposBean.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/model/Usuario.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/controller/EmailUtils.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/web/login.xhtml</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/web/pages/tasa.xhtml</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/web/pages/permisos.xhtml</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/controller/TasaBean.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/controller/SimuladoBean.java</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/web/pages/cliente/simulador.xhtml</file>
+            <file>file:/C:/Users/DANIEL/Documents/NetBeansProjects/SysBan3/src/java/com/sys/controller/MenuBean.java</file>
+        </group>
     </open-files>
 </project-private>
