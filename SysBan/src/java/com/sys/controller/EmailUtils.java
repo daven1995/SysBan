@@ -16,11 +16,11 @@ public class EmailUtils {
     // Crea el objeto del mensaje
     Message mensaje;
 
-    public void enviarMensaje() {
+    public void enviarMensaje(String correo) {
         mensaje = new MimeMessage(mailSession);
         try {
             // Lista de destinatarios separados por ,
-            mensaje.setRecipients(RecipientType.TO, InternetAddress.parse("ldudaniel031@hotmail.com"));
+            mensaje.setRecipients(RecipientType.TO, InternetAddress.parse(correo));
 // Asunto del correo electronico
             mensaje.setSubject("Asunto");
             // Cuerpo del mensaje, puede ser codigo HTML
